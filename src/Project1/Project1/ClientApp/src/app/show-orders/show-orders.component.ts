@@ -88,12 +88,18 @@ export class ShowOrdersComponent implements AfterViewInit {
 
   public onExportClick() {
     let checkEditedOrder = this.orderNumberExportPdf.toString().includes('.') ? (this.orderNumberExportPdf.toFixed() + 'E') : (this.orderNumberExportPdf.toFixed() + 'R');
-    
+
     const options = {
+      margin: [5, 0, 5, 0],
       filename: checkEditedOrder,
-      image: { type: 'jpeg' },
-      html2canvas: {},
-      jsPDF: { orientation: 'portrait' }
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: {
+        dpi: 192,
+        scale: 4,
+        letterRendering: true,
+        useCORS: true
+      },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
     const content: Element = document.getElementById('elementToExport');
@@ -147,7 +153,7 @@ export class ShowOrdersComponent implements AfterViewInit {
   public createOrderByEditing() {
     var editedShippingOrder: ShippingOrder = <ShippingOrder>{};
 
-   
+
     editedShippingOrder.orderNumber = this.orderNumberEdit;
     editedShippingOrder.creationDate = this.creationDateEdit;
     editedShippingOrder.truckRegNumber = this.truckNumberEdit;

@@ -116,16 +116,40 @@ export class ShippingOrderComponent implements OnInit {
 
     }, error => console.error(error));
 
+    const options = {
+      margin: [5, 0, 5, 0],
+      filename: this.order_number + 'R',
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: {
+        dpi: 192,
+        scale: 4,
+        letterRendering: true,
+        useCORS: true
+      },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
 
+    const content: Element = document.getElementById('elementToExport');
+
+    html2pdf()
+      .from(content)
+      .set(options)
+      .save();
 
   }
 
   public onExportClick() {
     const options = {
+      margin: [15, 0, 15, 0],
       filename: this.order_number + 'R',
-      image: { type: 'jpeg' },
-      html2canvas: {},
-      jsPDF: { orientation: 'portrait' }
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: {
+        dpi: 192,
+        scale: 4,
+        letterRendering: true,
+        useCORS: true
+      },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
     const content: Element = document.getElementById('elementToExport');
