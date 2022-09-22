@@ -1,0 +1,69 @@
+<div class="mat-elevation-z8 dataTable">
+  <table mat-table class="full-width-table" matSort aria-label="Elements"  [dataSource]="dataSource">
+    <!-- OrderNumber Column -->
+    <ng-container matColumnDef="orderNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Order Number</th>
+      <td mat-cell *matCellDef="let row">{{row.orderNumber}}</td>
+    </ng-container>
+
+    <!-- Creation Date Column -->
+    <ng-container matColumnDef="creationDate">
+      <th mat-header-cell *matHeaderCellDef>Creation Date</th>
+      <td mat-cell *matCellDef="let row">{{row.creationDate | date: 'dd.MM.yyyy'}}</td>
+    </ng-container>
+
+    <!-- Truck Registration Number Column -->
+    <ng-container matColumnDef="truckRegNumber">
+      <th mat-header-cell *matHeaderCellDef>Truck Reg. Number</th>
+      <td mat-cell *matCellDef="let row">{{row.truckRegNumber}}</td>
+    </ng-container>
+
+    <!-- Trailer Registratio Number Column -->
+    <ng-container matColumnDef="trailerRegNumber">
+      <th mat-header-cell *matHeaderCellDef>Trailer Reg. Number</th>
+      <td mat-cell *matCellDef="let row">{{row.trailerRegNumber}}</td>
+    </ng-container>
+
+    <!-- Loading Address Column -->
+    <ng-container matColumnDef="loadingAddress">
+      <th mat-header-cell *matHeaderCellDef>Loading Address</th>
+      <td mat-cell *matCellDef="let row">{{row.loadingAddress}}</td>
+    </ng-container>
+    
+    <!-- Loading Date Column -->
+    <ng-container matColumnDef="loadingDate">
+      <th mat-header-cell *matHeaderCellDef>Loading Date</th>
+      <td mat-cell *matCellDef="let row">{{row.loadingDate | date: 'dd.MM.yyyy'}}</td>
+    </ng-container>
+    
+    <!-- Unloading Address Column -->
+    <ng-container matColumnDef="unloadingAddress">
+      <th mat-header-cell *matHeaderCellDef>Unloading Address</th>
+      <td mat-cell *matCellDef="let row">{{row.unloadingAddress}}</td>
+    </ng-container>
+    
+    <!-- Unloading Date Column -->
+    <ng-container matColumnDef="unloadingDate">
+      <th mat-header-cell *matHeaderCellDef>Unloading Date</th>
+      <td mat-cell *matCellDef="let row">{{row.unloadingDate | date: 'dd.MM.yyyy'}}</td>
+    </ng-container>
+    
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <td mat-cell *matCellDef="let row">{{row.price}} €</td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="50"
+      [pageSizeOptions]="[2, 25, 50, 100, 250]">
+  </mat-paginator>
+</div>

@@ -1,0 +1,319 @@
+
+<mat-button-toggle (click)="showHideContent()">Formular</mat-button-toggle>
+
+<div id="inputContainer" style="display:none">
+
+  <form [formGroup]="createOrderForm">
+
+    <div class="inputStyle">
+
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Order Number</mat-label>
+        <input matInput
+               required
+               type="number"
+               [(ngModel)]="order_number"
+               value="{{order_number}}"
+               formControlName="order_number" />
+        <mat-hint align="end">You can use only numbers</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Order Date</mat-label>
+        <input matInput
+               required
+               [matDatepicker]="creationDate"
+               [(ngModel)]="creation_date"
+               formControlName="creation_date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="creationDate"></mat-datepicker-toggle>
+        <mat-datepicker #creationDate></mat-datepicker>
+      </mat-form-field>
+
+
+    </div>
+
+    <div class="inputStyle">
+
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Truck Number</mat-label>
+        <input matInput
+               required
+               type="text"
+               [(ngModel)]="truck_number"
+               style="text-transform:uppercase"
+               formControlName="truck_number" />
+        <mat-hint align="end">Truck registration numbers</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Trailer Number</mat-label>
+        <input matInput
+               required
+               type="text"
+               [(ngModel)]="trailer_number"
+               style="text-transform:uppercase"
+               formControlName="trailer_number" />
+        <mat-hint align="end">Trailer registration numbers</mat-hint>
+      </mat-form-field>
+
+    </div>
+
+    <div class="inputStyle">
+
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Loading Address</mat-label>
+        <input matInput
+               required
+               type="text"
+               [(ngModel)]="loading_address"
+               style="text-transform: capitalize"
+               formControlName="loading_address" />
+        <mat-hint align="end">Introduce the loading place</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Loading Date</mat-label>
+        <input matInput
+               required
+               [matDatepicker]="startDate"
+               [(ngModel)]="loading_date"
+               formControlName="loading_date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+        <mat-datepicker #startDate></mat-datepicker>
+      </mat-form-field>
+
+
+    </div>
+
+    <div class="inputStyle">
+
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Unloading Address</mat-label>
+        <input matInput
+               required
+               type="text"
+               [(ngModel)]="unloading_address"
+               style="text-transform: capitalize"
+               formControlName="unloading_address" />
+        <mat-hint align="end">Introduce the unloading place</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Unloading Date</mat-label>
+        <input matInput
+               required
+               [matDatepicker]="endDate"
+               [(ngModel)]="unloading_date"
+               formControlName="unloading_date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+        <mat-datepicker #endDate></mat-datepicker>
+      </mat-form-field>
+
+    </div>
+
+    <mat-form-field floatLabel="auto" appearance="outline" style="display: flex; justify-content:center">
+      <mat-label>Price</mat-label>
+      <input matInput
+             required
+             type="number"
+             [(ngModel)]="price"
+             formControlName="price" />
+      <mat-hint align="end">Introduce the shipping price</mat-hint>
+    </mat-form-field>
+
+  </form>
+
+  <!--Buttons start-->
+
+  <div class="dFlex">
+    <div [matTooltip]="'Please fill all input fields'"
+         [matTooltipDisabled]="isButtonEnabled"
+         [matTooltipPosition]="'left'">
+      <button mat-flat-button
+              [disabled]="!createOrderForm.valid"
+              (click)="createOrder()">
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
+
+
+
+    <div style="padding-left: 20px"
+         [matTooltip]="'Please fill all input fields'"
+         [matTooltipDisabled]="isButtonEnabled"
+         [matTooltipPosition]="'right'">
+      <button mat-raised-button
+              (click)="onExportClick()"
+              [disabled]="!createOrderForm.valid">
+        Export PDF
+      </button>
+    </div>
+
+
+    <div style="padding-left: 20px"
+         [matTooltip]="'Please fill all input fields'"
+         [matTooltipDisabled]="isButtonEnabled"
+         [matTooltipPosition]="'right'">
+      <button mat-raised-button
+              (click)="clearFields()">
+        Clear Fields
+      </button>
+    </div>
+  </div>
+
+  <!--Buttons end-->
+
+</div>
+
+<div class="container" id="elementToExport">
+  <br />
+  <hr class="dotted" />
+
+  <h3 id="companyName">NUMELE FIRMEI S.R.L.</h3>
+
+  <div id="companyDetails">
+
+    <small>Adresa <br> RO xxxxxx <br> Jud. Maramures</small>
+
+    <small>C.U.I. RO xxxxxxxx <br> Reg. Com. xxx/ xxx/ 2011</small>
+
+    <small>Tel/ Fax: xxxx/ xx xx xx <br> email: xx_xxx@yahoo.ro</small>
+
+  </div>
+
+  <hr class="dotted" />
+
+  <hr>
+
+  <h4 style="text-align: center; margin-top: -10px">Comanda/ Contract de Transport</h4>
+
+  <div id="numberAndDateField">
+
+    <p>Nr. &nbsp;<strong>{{order_number}} R</strong>/ {{creation_date | date: 'dd.MM.yyyy' }}</p>
+
+
+  </div>
+
+  <div id="clientDetails">
+
+    <h6>Catre: 123456 Numele Firmei SRL</h6>
+    <br />
+    <div class="clientDetailsFields">
+
+      <h6>Persoana de contact:</h6>
+      <p>Nume coordonator transport</p>
+
+    </div>
+    <br />
+    <br />
+    <div class="clientDetailsFields">
+
+      <h6>Telefon, email:  </h6>
+      <p>  0711111111, xxx@gmail.com</p>
+
+    </div>
+    <br />
+  </div>
+
+  <p style="font-size: 15px; padding-left: 40px">Prin prezenta va facem urmatoarea comanda ferma si irevocabila pentru:</p>
+
+  <table>
+
+    <tr>
+
+      <td><h6>TIPUL CAMIONULUI: prelata </h6></td>
+
+      <td>
+        <h6>NR. CAMION: {{truck_number | uppercase}} / {{trailer_number | uppercase}}</h6>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>TIPUL MARFII: generala</td>
+      <td>GREUTATE: 24 Tone</td>
+
+    </tr>
+
+    <tr style="height: 150px">
+
+      <td class="loadingContainer">
+
+        <h5 style="position: absolute; top: -5px; padding: 10px 10px">INCARCARE: </h5>
+        <br />
+        <h5 style="padding-left: 10px">{{loading_address | titlecase}}</h5>
+
+        <div class="dFlex" style="position: absolute; bottom: -5px">
+          <h6 style="padding-left: 10px">DATA: {{loading_date | date: 'dd.MM.yyyy' }}</h6>
+
+        </div>
+
+      </td>
+
+
+      <td class="loadingContainer">
+
+        <h5 style="position: absolute; top: -5px; padding: 10px 10px">DESCARCARE: </h5>
+        <br />
+        <h5 style="padding-left: 10px">{{unloading_address | titlecase}}</h5>
+
+
+
+        <div class="dFlex" style="position: absolute; bottom: -6px">
+          <h6 style="padding-left: 10px">DATA: {{unloading_date | date: 'dd.MM.yyyy' }}</h6>
+
+        </div>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td class="dFlex">
+        <h5>PRET TRANSPORT: </h5>
+        <p>{{price}}€ + TVA</p>
+      </td>
+
+      <td>
+        <p><strong>TERMEN DE PLATA:</strong> 30 de zile la primirea actelor in original</p>
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td colspan="2">
+        <strong>OBSERVATII:</strong>  SOFERII SA SE PREZINTE ATAT LA LOCUL DE INCARCARE CAT SI LA LOCUL DE DESCARCARE, CA FIIND DIN PARTEA TRANSPED RC-RAC SRL!!!
+      </td>
+
+    </tr>
+  </table>
+
+  <pre style="font-size: 10.5px; text-align: left">
+
+    In cazul transporturilor in regim exclusiv, se interzice în mod expres incarcarea a orice altceva (marfa,
+ persoane etc) in afara marfii menntionate de noi, in caz contrar transportatorul va suporta daunele cerute de
+ catre firma noastra si/ sau proprietarul marfii pentru care am efectuat aceasta comanda de transport.
+
+    In situatia in care masina se sigileaza la incarcare, transportatorul are obligatia de a ajunge cu sigiliul
+ intact la descarcare, in caz contrar va suporta toate daunele survenite in urma ruperii acestuia, cu exceptia
+ cazului în care sigiliul este desfacut de catre organele in drept (caz in care este necesara stampilarea CMR-ului
+ de catre organele in drept). 
+
+    Pretul include toate elementele de cheltuiala: asigurarea marfii, taxele de autostrada, taxele vamale,
+ taxe si comisioane bancare etc.
+</pre>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+<h1 id="tableLabel">Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!shippingOrders"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="shippingOrders">
+  <thead>
+    <tr>
+      <th>Order Number</th>
+      <th>Creation Date</th>
+      <th>Truck Reg. Number</th>
+      <th>Trailer Reg. Number</th>
+      <th>Loading Address</th>
+      <th>Loading Date</th>
+      <th>Unloading Address</th>
+      <th>Unloading Date</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of shippingOrders">
+      <td>{{ order.orderNumber }} R</td>
+      <td>{{ order.creationDate }}</td>
+      <td>{{ order.truckRegNumber }}</td>
+      <td>{{ order.trailerRegNumber }}</td>
+      <td>{{ order.loadingAddress }}</td>
+      <td>{{ order.loadingDate }}</td>
+      <td>{{ order.unloadingAddress }}</td>
+      <td>{{ order.unloadingDate }}</td>
+      <td>{{ order.price }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,79 @@
+table {
+  border: 1px solid black;
+  position: relative;
+  margin: 2px auto;
+}
+
+td {
+  border-left: 1px solid black;
+  position: relative;
+  margin: 2px auto;
+  width: 300px
+}
+
+
+
+tr {
+  border-bottom: 1px solid black;
+}
+
+.container {
+  width: 700px;
+  margin: 20px auto;
+}
+
+.dotted {
+  border: 2px dotted black;
+  border-style: none none dotted;
+  color: #fff;
+  background-color: #fff;
+}
+
+.clientDetailsFields {
+  display: flex;
+  margin: -30px auto;
+}
+
+#companyName {
+  text-align: center;
+}
+
+#companyDetails {
+  display: flex;
+  justify-content: space-around;
+}
+
+#numberAndDateField {
+  margin-left: 500px;
+}
+
+#clientDetails {
+  margin-left: 50px;
+}
+
+.dFlex {
+  display: flex;
+}
+
+.inputField {
+  width: 120px;
+  height: 20px;
+  margin: auto 10px;
+}
+
+#inputContainer {
+  border: 2px solid darkgrey;
+  padding: 10px 10px;
+  border-radius: 10px;
+  width: 500px;
+}
+
+.inputStyle{
+    display: flex;
+    justify-content: space-between;
+}
+
+.loadingContainer{
+    height: 240px;
+}
+
