@@ -1,2 +1,7 @@
 # Shipping-Order
 This app is made for easy creation shipping orders within transport company
+
+Am creat aceasta aplicatie pentru a simplifica munca acelor persoane care trebuie sa faca comenzi de transport si in mod obisnuit acestea se fac in Word.
+In aceasta aplicatie trebuie sa completezi un formular cu datele transportului, numarul comenzii de transport se incrementeaza automat, iar date crearii este data curenta. Pentru a putea salva comanda, toate campurile trebuie sa fie completate. Avem cateva validari pe baza de date pentru a evita crearea aceleasi comenzi de doua ori sau daca s-a produs o greseala. Daca pentru acelasi camion si aceeasi adresa de incarcare s-a facut deja o comanda de transport, vom primi un mesaj de alerta si inregistrarea in baza de date nu va avea loc. 
+EX: Avem Numarul MM 01 YRA pentru camion, care incarca din Romania in data de 02.05.2022. Daca incercam sa inregistram o alta comanda pe MM 01 YRA care incarca din Romania in data de 01.05.2022 sau 03.05.2022 vom primi un mesaj de alerta care ne va anunta ca aceasta comanda a fost deja creata si va sugera numarul comenzii.
+La finalizarea inregistrarii comenzii, aceasta poate fi descarcata in format pdf din pagina "show orders" care afiseaza o lista cu toate comenzile existente si doua butoane pentru fiecare comanda( un buton pentru a descarca comanda in format PDF si un buton pentru a edita comanda, la editarea comenzii aceasta se va inregistra in baza de date cu orderNumber+".1")
